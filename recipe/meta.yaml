@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1001
+  number: 1002
   skip: true  # [win]
 
 requirements:
@@ -28,45 +28,20 @@ requirements:
     - lalframe >=1.4.0
     - lalmetaio >=1.4.0
     - lalsimulation >=1.8.0
+  run:
+    - gsl
+    - metaio
+    - lal >=6.19.0
+    - lalframe >=1.4.0
+    - lalmetaio >=1.4.0
+    - lalsimulation >=1.8.0
+
+test:
+  commands:
+    - lalinspiral_version --verbose
 
 outputs:
   - name: lalinspiral
-    script: install-c.sh
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - pkg-config
-        - make
-        - swig >=3.0.7
-      host:
-        - gsl
-        - metaio
-        - lal >=6.19.0
-        - lalframe >=1.4.0
-        - lalmetaio >=1.4.0
-        - lalsimulation >=1.8.0
-      run:
-        - gsl
-        - metaio
-        - lal >=6.19.0
-        - lalframe >=1.4.0
-        - lalmetaio >=1.4.0
-        - lalsimulation >=1.8.0
-    test:
-      commands:
-        - lalinspiral_version --verbose
-    about:
-      home: https://wiki.ligo.org/Computing/DASWG/LALSuite
-      doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
-      dev_url: https://git.ligo.org/lscsoft/lalsuite/
-      license: GPLv3
-      license_family: GPL
-      license_file: COPYING
-      summary: LSC Algorithm Inspiral Library
-      description: |
-        The LSC Algorithm Inspiral Library for gravitational wave data analysis.
-        This package contains the shared-object libraries needed to run
-        applications that use the LAL Inspiral library.
 
   - name: python-lalinspiral
     script: install-python.sh
@@ -82,8 +57,9 @@ outputs:
         - numpy
       run:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
-        - python
+        - lscsoft-glue <2.0a0
         - {{ pin_compatible('numpy') }}
+        - python
         - python-lal >=6.19.0
         - python-lalframe >=1.4.0
         - python-lalmetaio >=1.4.0
@@ -109,9 +85,16 @@ outputs:
 
 about:
   home: https://wiki.ligo.org/Computing/DASWG/LALSuite
+  doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
+  dev_url: https://git.ligo.org/lscsoft/lalsuite/
   license: GPLv3
   license_family: GPL
+  license_file: COPYING
   summary: LSC Algorithm Inspiral Library
+  description: |
+    The LSC Algorithm Inspiral Library for gravitational wave data analysis.
+    This package contains the shared-object libraries needed to run
+    applications that use the LAL Inspiral library.
 
 extra:
   recipe-maintainers:
