@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1001
+  number: 1002
   skip: true  # [win]
 
 requirements:
@@ -82,8 +82,9 @@ outputs:
         - numpy
       run:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
-        - python
+        - lscsoft-glue <2.0a0
         - {{ pin_compatible('numpy') }}
+        - python
         - python-lal >=6.19.0
         - python-lalframe >=1.4.0
         - python-lalmetaio >=1.4.0
