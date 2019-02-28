@@ -1,6 +1,13 @@
 {% set name = "lalinspiral" %}
-{% set version = "1.8.0" %}
-{% set sha256 = "c031d878e7c06bf2c0b8ab56f6cf3a29ced4a6e85e3daab42a4101d27999b2ed" %}
+{% set version = "1.8.1" %}
+{% set sha256 = "a6410e9af2b57f6ee88d073c1f2026169b4d785ba7a4f693da75fa079e7921a7" %}
+
+{% set lal_version = "6.19.2" %}
+{% set lalburst_version = "1.5.1" %}
+{% set lalframe_version = "1.4.0" %}
+{% set lalmetaio_version = "1.5.0" %}
+{% set lalsimulation_version = "1.8.2" %}
+{% set swig_version = "3.0.7" %}
 
 package:
   name: {{ name }}
@@ -10,31 +17,34 @@ source:
   fn: {{ name }}-{{ version }}.tar.xz
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
+  patches:
+    # https://git.ligo.org/lscsoft/lalsuite/merge_requests/682
+    - thinca-build.patch
 
 build:
-  number: 1002
+  number: 0
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - pkg-config
     - make
-    - swig >=3.0.7
+    - pkg-config
+    - swig >={{ swig_version }}
   host:
     - gsl
+    - lal >={{ lal_version }}
+    - lalframe >={{ lalframe_version }}
+    - lalmetaio >={{ lalmetaio_version }}
+    - lalsimulation >={{ lalsimulation_version }}
     - metaio
-    - lal >=6.19.0
-    - lalframe >=1.4.0
-    - lalmetaio >=1.4.0
-    - lalsimulation >=1.8.0
   run:
     - gsl
+    - lal >={{ lal_version }}
+    - lalframe >={{ lalframe_version }}
+    - lalmetaio >={{ lalmetaio_version }}
+    - lalsimulation >={{ lalsimulation_version }}
     - metaio
-    - lal >=6.19.0
-    - lalframe >=1.4.0
-    - lalmetaio >=1.4.0
-    - lalsimulation >=1.8.0
 
 test:
   commands:
@@ -48,23 +58,24 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - pkg-config
         - make
-        - swig >=3.0.7
+        - pkg-config
+        - swig >={{ swig_version }}
       host:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
-        - python
         - numpy
+        - python
       run:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
-        - lscsoft-glue <2.0a0
+        - lscsoft-glue
         - {{ pin_compatible('numpy') }}
         - python
-        - python-lal >=6.19.0
-        - python-lalframe >=1.4.0
-        - python-lalmetaio >=1.4.0
-        - python-lalsimulation >=1.8.0
-        - python-lalburst
+        - python-lal >={{ lal_version }}
+        - python-lalburst >={{ lalburst_version }}
+        - python-lalframe >={{ lalframe_version }}
+        - python-lalmetaio >={{ lalmetaio_version }}
+        - python-lalsimulation >={{ lalsimulation_version }}
+        - python-ligo-lw
     test:
       imports:
         - lalinspiral
@@ -73,7 +84,7 @@ outputs:
         - lalinspiral.thinca
     about:
       home: https://wiki.ligo.org/Computing/DASWG/LALSuite
-      doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
+      doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
       dev_url: https://git.ligo.org/lscsoft/lalsuite/
       license: GPLv3
       license_family: GPL
@@ -85,7 +96,7 @@ outputs:
 
 about:
   home: https://wiki.ligo.org/Computing/DASWG/LALSuite
-  doc_url: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
+  doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
   dev_url: https://git.ligo.org/lscsoft/lalsuite/
   license: GPLv3
   license_family: GPL
@@ -94,7 +105,9 @@ about:
   description: |
     The LSC Algorithm Inspiral Library for gravitational wave data analysis.
     This package contains the shared-object libraries needed to run
-    applications that use the LAL Inspiral library.
+    applications that use the LAL Inspiral library.  If you want to install
+    the Python bindings, please install the associated python-lalinspiral
+    package.
 
 extra:
   recipe-maintainers:
