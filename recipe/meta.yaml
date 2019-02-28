@@ -1,6 +1,6 @@
 {% set name = "lalinspiral" %}
-{% set version = "1.8.0" %}
-{% set sha256 = "c031d878e7c06bf2c0b8ab56f6cf3a29ced4a6e85e3daab42a4101d27999b2ed" %}
+{% set version = "1.8.1" %}
+{% set sha256 = "a6410e9af2b57f6ee88d073c1f2026169b4d785ba7a4f693da75fa079e7921a7" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1002
+  number: 0
   skip: true  # [win]
 
 requirements:
