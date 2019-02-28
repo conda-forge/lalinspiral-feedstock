@@ -17,6 +17,9 @@ source:
   fn: {{ name }}-{{ version }}.tar.xz
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
+  patches:
+    # https://git.ligo.org/lscsoft/lalsuite/merge_requests/682
+    - thinca-build.patch
 
 build:
   number: 0
