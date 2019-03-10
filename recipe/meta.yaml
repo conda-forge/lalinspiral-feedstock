@@ -22,7 +22,7 @@ source:
     - thinca-build.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -52,6 +52,9 @@ test:
 
 outputs:
   - name: lalinspiral
+    build:
+      run_exports:
+        - {{ pin_subpackage("lalinspiral", max_pin="x.x") }}
 
   - name: python-lalinspiral
     script: install-python.sh
