@@ -1,7 +1,3 @@
-<!--
-# -*- mode: jinja -*-
--->
-
 About lalinspiral
 =================
 
@@ -15,15 +11,56 @@ Summary: LSC Algorithm Inspiral Library
 
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
 This package contains the shared-object libraries needed to run
-applications that use the LAL Inspiral library.
+applications that use the LAL Inspiral library.  If you want to install
+the Python bindings, please install the associated python-lalinspiral
+package.
 
 
 Current build status
 ====================
 
-[![Linux](https://img.shields.io/circleci/project/github/conda-forge/lalinspiral-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/lalinspiral-feedstock)
-[![OSX](https://img.shields.io/travis/conda-forge/lalinspiral-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/lalinspiral-feedstock)
-![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
+
+<table>
+    
+  <tr>
+    <td>Azure</td>
+    <td>
+      <details>
+        <summary>
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3991&branchName=master">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/lalinspiral-feedstock?branchName=master">
+          </a>
+        </summary>
+        <table>
+          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
+          <tbody><tr>
+              <td>linux</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3991&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/lalinspiral-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3991&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/lalinspiral-feedstock?branchName=master&jobName=osx&configuration=osx_" alt="variant">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td>Windows</td>
+    <td>
+      <img src="https://img.shields.io/badge/Windows-disabled-lightgrey.svg" alt="Windows disabled">
+    </td>
+  </tr>
+![ppc64le disabled](https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg)
+</table>
 
 Current release info
 ====================

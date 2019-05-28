@@ -20,9 +20,13 @@ source:
   patches:
     # https://git.ligo.org/lscsoft/lalsuite/merge_requests/682
     - thinca-build.patch
+    # https://git.ligo.org/lscsoft/lalsuite/merge_requests/696
+    - pkgconfig.patch
+    # https://git.ligo.org/lscsoft/lalsuite/merge_requests/799
+    - libframe.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -37,6 +41,7 @@ requirements:
     - lalframe >={{ lalframe_version }}
     - lalmetaio >={{ lalmetaio_version }}
     - lalsimulation >={{ lalsimulation_version }}
+    - libblas=*=*netlib
     - metaio
   run:
     - gsl
@@ -68,9 +73,16 @@ outputs:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
         - numpy
         - python
+        - libblas=*=*netlib
       run:
+        - gsl
+        - lal >={{ lal_version }}
+        - lalframe >={{ lalframe_version }}
+        - lalmetaio >={{ lalmetaio_version }}
+        - lalsimulation >={{ lalsimulation_version }}
         - {{ pin_subpackage('lalinspiral', exact=True) }}
         - lscsoft-glue
+        - metaio
         - {{ pin_compatible('numpy') }}
         - python
         - python-lal >={{ lal_version }}
