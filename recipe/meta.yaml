@@ -1,6 +1,6 @@
 {% set name = "lalinspiral" %}
-{% set version = "1.8.1" %}
-{% set sha256 = "a6410e9af2b57f6ee88d073c1f2026169b4d785ba7a4f693da75fa079e7921a7" %}
+{% set version = "1.9.0" %}
+{% set sha256 = "bad8ed78dcfdfaaab4bb808387f708053cd3c76d21e732e8ceb60d0ad8be1916" %}
 
 {% set lal_version = "6.19.2" %}
 {% set lalburst_version = "1.5.1" %}
@@ -26,7 +26,7 @@ source:
     - libframe.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
