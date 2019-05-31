@@ -1,12 +1,11 @@
 {% set name = "lalinspiral" %}
-{% set version = "1.8.1" %}
-{% set sha256 = "a6410e9af2b57f6ee88d073c1f2026169b4d785ba7a4f693da75fa079e7921a7" %}
+{% set version = "1.9.0" %}
+{% set sha256 = "bad8ed78dcfdfaaab4bb808387f708053cd3c76d21e732e8ceb60d0ad8be1916" %}
 
-{% set lal_version = "6.19.2" %}
-{% set lalburst_version = "1.5.1" %}
+{% set lal_version = "6.20.0" %}
 {% set lalframe_version = "1.4.0" %}
 {% set lalmetaio_version = "1.5.0" %}
-{% set lalsimulation_version = "1.8.2" %}
+{% set lalsimulation_version = "1.9.0" %}
 {% set swig_version = "3.0.7" %}
 
 package:
@@ -18,15 +17,11 @@ source:
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
-    # https://git.ligo.org/lscsoft/lalsuite/merge_requests/682
-    - thinca-build.patch
-    # https://git.ligo.org/lscsoft/lalsuite/merge_requests/696
-    - pkgconfig.patch
     # https://git.ligo.org/lscsoft/lalsuite/merge_requests/799
     - libframe.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -71,22 +66,17 @@ outputs:
         - swig >={{ swig_version }}
       host:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
-        - numpy
+        - numpy 1.9
         - python
         - libblas=*=*netlib
       run:
-        - gsl
         - lal >={{ lal_version }}
-        - lalframe >={{ lalframe_version }}
-        - lalmetaio >={{ lalmetaio_version }}
-        - lalsimulation >={{ lalsimulation_version }}
         - {{ pin_subpackage('lalinspiral', exact=True) }}
         - lscsoft-glue
-        - metaio
         - {{ pin_compatible('numpy') }}
         - python
         - python-lal >={{ lal_version }}
-        - python-lalburst >={{ lalburst_version }}
+        - python-lalburst >=1.5.1
         - python-lalframe >={{ lalframe_version }}
         - python-lalmetaio >={{ lalmetaio_version }}
         - python-lalsimulation >={{ lalsimulation_version }}
