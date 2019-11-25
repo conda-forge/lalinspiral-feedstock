@@ -13,7 +13,6 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.xz
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
@@ -21,6 +20,8 @@ source:
     - libframe.patch
 
 build:
+  error_overdepending: true
+  error_overlinking: true
   number: 2
   skip: true  # [win]
 
