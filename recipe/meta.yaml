@@ -69,9 +69,14 @@ outputs:
         - numpy
         - python
       run:
+        - gsl  # [linux]
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalinspiral', exact=True) }}
+        - lalframe  # [linux]
+        - lalmetaio  # [linux]
+        - lalsimulation  # [linux]
         - lscsoft-glue
+        - metaio  # [linux]
         - {{ pin_compatible('numpy') }}
         - python
         - python-lal >={{ lal_version }}
