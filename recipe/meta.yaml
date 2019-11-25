@@ -21,7 +21,7 @@ source:
     - libframe.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -36,7 +36,6 @@ requirements:
     - lalframe >={{ lalframe_version }}
     - lalmetaio >={{ lalmetaio_version }}
     - lalsimulation >={{ lalsimulation_version }}
-    - libblas=*=*netlib
     - metaio
   run:
     - gsl
@@ -68,7 +67,6 @@ outputs:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
         - numpy
         - python
-        - libblas=*=*netlib
       run:
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalinspiral', exact=True) }}
