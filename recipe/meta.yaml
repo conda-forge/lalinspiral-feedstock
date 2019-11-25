@@ -13,7 +13,6 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.xz
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
@@ -21,7 +20,9 @@ source:
     - libframe.patch
 
 build:
-  number: 1
+  error_overdepending: true
+  error_overlinking: true
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -36,7 +37,6 @@ requirements:
     - lalframe >={{ lalframe_version }}
     - lalmetaio >={{ lalmetaio_version }}
     - lalsimulation >={{ lalsimulation_version }}
-    - libblas=*=*netlib
     - metaio
   run:
     - gsl
@@ -68,11 +68,15 @@ outputs:
         - {{ pin_subpackage('lalinspiral', exact=True) }}
         - numpy
         - python
-        - libblas=*=*netlib
       run:
+        - gsl  # [linux]
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalinspiral', exact=True) }}
+        - lalframe  # [linux]
+        - lalmetaio  # [linux]
+        - lalsimulation  # [linux]
         - lscsoft-glue
+        - metaio  # [linux]
         - {{ pin_compatible('numpy') }}
         - python
         - python-lal >={{ lal_version }}
