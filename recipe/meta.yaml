@@ -1,6 +1,6 @@
 {% set name = "lalinspiral" %}
-{% set version = "1.9.0" %}
-{% set sha256 = "bad8ed78dcfdfaaab4bb808387f708053cd3c76d21e732e8ceb60d0ad8be1916" %}
+{% set version = "1.10.0" %}
+{% set sha256 = "72b60e74b165d342adcc422041259c395f8c32fe39c50e60360905edbd6c2853" %}
 
 {% set lal_version = "6.20.0" %}
 {% set lalframe_version = "1.4.0" %}
@@ -22,7 +22,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
