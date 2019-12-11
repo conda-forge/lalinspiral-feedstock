@@ -61,7 +61,9 @@ outputs:
     build:
       ignore_run_exports:
         # we don't actually use lalburst, but need it to ./configure
-        - lalburst
+        # unfortunately, swig overlinks liblalburst into the python
+        # bindings on linux
+        - lalburst  # [not linux]
     script: install-python.sh
     requirements:
       build:
@@ -78,6 +80,7 @@ outputs:
         - gsl  # [linux]
         - lal >={{ lal_version }}
         - {{ pin_subpackage('lalinspiral', exact=True) }}
+        - lalburst  # [linux]
         - lalframe  # [linux]
         - lalmetaio  # [linux]
         - lalsimulation  # [linux]
