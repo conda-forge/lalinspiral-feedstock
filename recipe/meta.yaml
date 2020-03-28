@@ -64,6 +64,8 @@ outputs:
         # unfortunately, swig overlinks liblalburst into the python
         # bindings on linux
         - lalburst  # [not linux]
+        # nothing actually links against libpython
+        - python
     script: install-python.sh
     requirements:
       build:
