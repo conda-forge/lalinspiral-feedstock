@@ -2,11 +2,11 @@
 {% set version = "1.10.1" %}
 {% set sha256 = "c6391d829e96d6cf5f21eb278d192f95a6ddd09150dd77fb659aadd0afe0a088" %}
 
-{% set lal_version = "6.21.0" %}
+{% set lal_version = "7.0.0" %}
 {% set lalburst_version = "1.5.3" %}
 {% set lalframe_version = "1.5.0" %}
 {% set lalmetaio_version = "1.6.0" %}
-{% set lalsimulation_version = "1.10.0" %}
+{% set lalsimulation_version = "2.1.0" %}
 {% set swig_version = "3.0.9" %}
 
 package:
@@ -103,8 +103,6 @@ outputs:
         - lalinspiral.sbank
         - lalinspiral.thinca
       requires:
-        - mock  # [py<33]
-        - pathlib  # [py<34]
         - pytest >=4.0.0a0
       source_files:
         - test/python
