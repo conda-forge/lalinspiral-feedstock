@@ -1,26 +1,26 @@
 {% set name = "lalinspiral" %}
-{% set version = "1.10.0" %}
-{% set sha256 = "72b60e74b165d342adcc422041259c395f8c32fe39c50e60360905edbd6c2853" %}
+{% set version = "1.10.1" %}
+{% set sha256 = "c6391d829e96d6cf5f21eb278d192f95a6ddd09150dd77fb659aadd0afe0a088" %}
 
-{% set lal_version = "6.21.0" %}
+{% set lal_version = "7.0.0" %}
 {% set lalburst_version = "1.5.3" %}
 {% set lalframe_version = "1.5.0" %}
 {% set lalmetaio_version = "1.6.0" %}
-{% set lalsimulation_version = "1.10.0" %}
+{% set lalsimulation_version = "2.1.0" %}
 {% set swig_version = "3.0.9" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz"
-  sha256: "{{ sha256 }}"
+  url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
 
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 3
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -103,33 +103,31 @@ outputs:
         - lalinspiral.sbank
         - lalinspiral.thinca
       requires:
-        - mock  # [py<33]
-        - pathlib  # [py<34]
         - pytest >=4.0.0a0
       source_files:
         - test/python
       commands:
         - pushd test/python; python -m pytest -v; popd
     about:
-      home: "https://wiki.ligo.org/Computing/LALSuite"
-      doc_url: "https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/"
-      dev_url: "https://git.ligo.org/lscsoft/lalsuite/"
-      license: "GPL-2.0-or-later"
-      license_family: "GPL"
-      license_file: "COPYING"
-      summary: "LSC Algorithm Inspiral Library"
+      home: https://wiki.ligo.org/Computing/LALSuite
+      doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
+      dev_url: https://git.ligo.org/lscsoft/lalsuite/
+      license: GPL-2.0-or-later
+      license_family: GPL
+      license_file: COPYING
+      summary: LSC Algorithm Inspiral Library
       description: |
         The LSC Algorithm Inspiral Library for gravitational wave data analysis.
         This package contains the python bindings.
 
 about:
-  home: "https://wiki.ligo.org/Computing/LALSuite"
-  doc_url: "https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/"
-  dev_url: "https://git.ligo.org/lscsoft/lalsuite/"
-  license: "GPL-2.0-or-later"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "LSC Algorithm Inspiral Library"
+  home: https://wiki.ligo.org/Computing/LALSuite
+  doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
+  dev_url: https://git.ligo.org/lscsoft/lalsuite/
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: LSC Algorithm Inspiral Library
   description: |
     The LSC Algorithm Inspiral Library for gravitational wave data analysis.
     This package contains the shared-object libraries needed to run
