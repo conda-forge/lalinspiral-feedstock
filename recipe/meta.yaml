@@ -2,11 +2,11 @@
 {% set version = "2.0.0" %}
 {% set sha256 = "41f64a42d3ee0f767cfd6cee934d6fd94b8767257ecf51209d9b1d6e1e59e7d0" %}
 
-{% set lal_version = "7.0.0" %}
+{% set lal_version = "7.1.0" %}
 {% set lalburst_version = "1.5.3" %}
 {% set lalframe_version = "1.5.0" %}
-{% set lalmetaio_version = "1.6.0" %}
-{% set lalsimulation_version = "2.1.0" %}
+{% set lalmetaio_version = "2.0.0" %}
+{% set lalsimulation_version = "2.3.0" %}
 {% set swig_version = "3.0.9" %}
 
 package:
