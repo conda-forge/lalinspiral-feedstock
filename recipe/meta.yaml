@@ -1,6 +1,6 @@
 {% set name = "lalinspiral" %}
-{% set version = "2.0.0" %}
-{% set sha256 = "41f64a42d3ee0f767cfd6cee934d6fd94b8767257ecf51209d9b1d6e1e59e7d0" %}
+{% set version = "2.0.1" %}
+{% set sha256 = "5b6bf1d1b63aabad015a60f73b178bda0b3ac588715f0a9e181e53afdb0725b4" %}
 
 {% set lal_version = "7.1.0" %}
 {% set lalburst_version = "1.5.3" %}
