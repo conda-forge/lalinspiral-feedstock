@@ -14,10 +14,8 @@ Development: https://git.ligo.org/lscsoft/lalsuite/
 Documentation: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
 
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
-This package contains the shared-object libraries needed to run
-applications that use the LAL Inspiral library.  If you want to install
-the Python bindings, please install the associated python-lalinspiral
-package.
+This package contains the shared object libraries needed to run
+applications that use the LAL Inspiral library.
 
 
 Current build status
@@ -65,6 +63,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-lalinspiral-green.svg)](https://anaconda.org/conda-forge/lalinspiral) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/lalinspiral.svg)](https://anaconda.org/conda-forge/lalinspiral) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/lalinspiral.svg)](https://anaconda.org/conda-forge/lalinspiral) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/lalinspiral.svg)](https://anaconda.org/conda-forge/lalinspiral) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-liblalinspiral-green.svg)](https://anaconda.org/conda-forge/liblalinspiral) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/liblalinspiral.svg)](https://anaconda.org/conda-forge/liblalinspiral) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/liblalinspiral.svg)](https://anaconda.org/conda-forge/liblalinspiral) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/liblalinspiral.svg)](https://anaconda.org/conda-forge/liblalinspiral) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-python--lalinspiral-green.svg)](https://anaconda.org/conda-forge/python-lalinspiral) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/python-lalinspiral.svg)](https://anaconda.org/conda-forge/python-lalinspiral) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/python-lalinspiral.svg)](https://anaconda.org/conda-forge/python-lalinspiral) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/python-lalinspiral.svg)](https://anaconda.org/conda-forge/python-lalinspiral) |
 
 Installing lalinspiral
@@ -76,10 +75,10 @@ Installing `lalinspiral` from the `conda-forge` channel can be achieved by addin
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `lalinspiral, python-lalinspiral` can be installed with:
+Once the `conda-forge` channel has been enabled, `lalinspiral, liblalinspiral, python-lalinspiral` can be installed with:
 
 ```
-conda install lalinspiral python-lalinspiral
+conda install lalinspiral liblalinspiral python-lalinspiral
 ```
 
 It is possible to list all of the versions of `lalinspiral` available on your platform with:
