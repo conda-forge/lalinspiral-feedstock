@@ -21,7 +21,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -66,6 +66,9 @@ outputs:
         - liblalmetaio >={{ lalmetaio_version }}
         - liblalsimulation >={{ lalsimulation_version }}
         - metaio
+      run_constrained:
+        - lalinspiral >=2.0.1
+        - python-lalinspiral >=2.0.1
     test:
       requires:
         - pkg-config
