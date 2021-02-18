@@ -1,6 +1,6 @@
 {% set name = "lalinspiral" %}
-{% set version = "2.0.1" %}
-{% set sha256 = "5b6bf1d1b63aabad015a60f73b178bda0b3ac588715f0a9e181e53afdb0725b4" %}
+{% set version = "2.0.2" %}
+{% set sha256 = "472fd96e2fe8645b0bc781376bece4fc54ccbb311975dc6a38477cbd3b3e2ca3" %}
 
 # dependencies
 {% set lal_version = "7.1.0" %}
@@ -21,7 +21,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
