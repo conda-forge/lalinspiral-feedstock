@@ -144,10 +144,15 @@ outputs:
       license: GPL-2.0-or-later
       license_family: GPL
       license_file: COPYING
-      summary: LSC Algorithm Inspiral Library python libraries
+      summary: LSC Algorithm Inspiral Library Python libraries
       description: |
         The LSC Algorithm Inspiral Library for gravitational wave data analysis.
-        This package contains the python bindings.
+        This package contains the Python bindings of the LALInspiral C libraries
+        and additional Python modules.
+
+        Note: this package only provides the importable Python libraries.
+        All command-line interfaces, scripts, and executables are
+        part of the [`lalinspiral`](/conda-forge/lalinspiral) package.
 
   - name: lalinspiral
     script: install-bin.sh
