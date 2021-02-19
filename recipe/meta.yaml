@@ -73,7 +73,12 @@ outputs:
       requires:
         - pkg-config
       commands:
-        - test $(pkg-config --modversion --print-errors lalinspiral) == "${PKG_VERSION}"
+        # check library
+        - test -f ${PREFIX}/lib/liblalinspiral${SHLIB_EXT}  # [unix]
+        # check activate variables
+        - test "${LALINSPIRAL_DATADIR}" = "${PREFIX}/share/lalinspiral"  # [unix]
+        # check pkg-config
+        - pkg-config --print-errors --exact-version "${PKG_VERSION}" lalinspiral
     about:
       home: https://wiki.ligo.org/Computing/LALSuite
       doc_url: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
@@ -81,7 +86,7 @@ outputs:
       license: GPL-2.0-or-later
       license_family: GPL
       license_file: COPYING
-      summary: LSC Algorithm Inspiral Library
+      summary: LSC Algorithm Inspiral Library shared object libraries
       description: |
         The LSC Algorithm Inspiral Library for gravitational wave data analysis.
         This package contains the shared object libraries needed to run
@@ -120,15 +125,13 @@ outputs:
         - python-lalmetaio >={{ lalmetaio_version }}
         - python-lalsimulation >={{ lalsimulation_version }}
         - python-ligo-lw
-        # swig bindings cause segmentation fault
-        - numpy <1.20.0a0
     test:
       requires:
         - pytest >=4.0.0a0
       source_files:
         - test/python
       commands:
-        - python -m pytest -rs -v test/python
+        - python -m pytest -ra -v test/python
       imports:
         - lalinspiral
         - lalinspiral.inspinjfind
@@ -141,7 +144,7 @@ outputs:
       license: GPL-2.0-or-later
       license_family: GPL
       license_file: COPYING
-      summary: LSC Algorithm Inspiral Library
+      summary: LSC Algorithm Inspiral Library python libraries
       description: |
         The LSC Algorithm Inspiral Library for gravitational wave data analysis.
         This package contains the python bindings.
