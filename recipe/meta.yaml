@@ -152,7 +152,7 @@ outputs:
 
         Note: this package only provides the importable Python libraries.
         All command-line interfaces, scripts, and executables are
-        part of the [`lalinspiral`](/conda-forge/lalinspiral) package.
+        part of the `lalinspiral` package.
 
   - name: lalinspiral
     script: install-bin.sh
