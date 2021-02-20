@@ -7,7 +7,7 @@ Package license: GPL-2.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/lalinspiral-feedstock/blob/master/LICENSE.txt)
 
-Summary: LSC Algorithm Inspiral Library
+Summary: LSC Algorithm Inspiral Library shared object libraries
 
 Development: https://git.ligo.org/lscsoft/lalsuite/
 
