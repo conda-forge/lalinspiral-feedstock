@@ -34,7 +34,7 @@ requirements:
   host:
     - gsl
     - liblal >={{ lal_version }}
-    - liblalframe >={{ lalframe_version }}
+    - liblalframe >={{ lalframe_version }},<1.5.5
     - liblalmetaio >={{ lalmetaio_version }}
     - liblalsimulation >={{ lalsimulation_version }}
     - metaio
@@ -112,6 +112,7 @@ outputs:
       host:
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - liblalburst >={{ lalburst_version }}
+        - liblalframe >={{ lalframe_version }},<1.5.5
         - numpy
         - python
       run:
