@@ -1,12 +1,12 @@
 {% set name = "lalinspiral" %}
-{% set version = "2.0.2" %}
-{% set sha256 = "472fd96e2fe8645b0bc781376bece4fc54ccbb311975dc6a38477cbd3b3e2ca3" %}
+{% set version = "2.0.3" %}
+{% set sha256 = "d195a22eac808d37ebd00dcb2a1dd4f7dbcf5a8e7fe6ebca4f4afd50234d9a88" %}
 
 # dependencies
 {% set lal_version = "7.1.0" %}
 {% set lalframe_version = "1.5.0" %}
 {% set lalmetaio_version = "2.0.0" %}
-{% set lalsimulation_version = "2.5.0" %}
+{% set lalsimulation_version = "3.0.0" %}
 {% set lalburst_version = "1.5.3" %}
 {% set swig_version = "3.0.10" %}
 
