@@ -1,6 +1,5 @@
 {% set name = "lalinspiral" %}
 {% set version = "2.0.3" %}
-{% set sha256 = "d195a22eac808d37ebd00dcb2a1dd4f7dbcf5a8e7fe6ebca4f4afd50234d9a88" %}
 
 # dependencies
 {% set lal_version = "7.1.0" %}
@@ -16,7 +15,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: {{ sha256 }}
+  sha256: d195a22eac808d37ebd00dcb2a1dd4f7dbcf5a8e7fe6ebca4f4afd50234d9a88
 
 build:
   error_overdepending: true
@@ -26,10 +25,6 @@ build:
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - numpy                                  # [build_platform != target_platform]
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - make
     - help2man >=1.37
@@ -113,6 +108,10 @@ outputs:
         - make
         - pkg-config >=0.18.0
         - swig >={{ swig_version }}
+        # extras for cross-compiling
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - numpy                                  # [build_platform != target_platform]
       host:
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - liblalburst >={{ lalburst_version }}
