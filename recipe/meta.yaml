@@ -16,9 +16,6 @@ package:
 source:
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
   sha256: 9d14473488c872277dbc68f2dc1dfaa1474ec64b6cbaa4d979b24abc01247b6c
-  patches:
-    # patch out gsl_version check when cross-compiling
-    - no-gsl_version-check.patch  # [build_platform != target_platform]
 
 build:
   error_overdepending: true
