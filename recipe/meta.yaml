@@ -1,11 +1,11 @@
 {% set name = "lalinspiral" %}
-{% set version = "2.0.3" %}
+{% set version = "2.0.4" %}
 
 # dependencies
 {% set lal_version = "7.1.0" %}
-{% set lalframe_version = "1.5.0" %}
-{% set lalmetaio_version = "2.0.0" %}
-{% set lalsimulation_version = "3.0.0" %}
+{% set lalframe_version = "1.6.0" %}
+{% set lalmetaio_version = "2.1.0" %}
+{% set lalsimulation_version = "3.1.0" %}
 {% set lalburst_version = "1.5.3" %}
 {% set swig_version = "3.0.10" %}
 
@@ -15,15 +15,12 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: d195a22eac808d37ebd00dcb2a1dd4f7dbcf5a8e7fe6ebca4f4afd50234d9a88
-  patches:
-    # patch out gsl_version check when cross-compiling
-    - no-gsl_version-check.patch  # [build_platform != target_platform]
+  sha256: 9d14473488c872277dbc68f2dc1dfaa1474ec64b6cbaa4d979b24abc01247b6c
 
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
