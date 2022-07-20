@@ -97,10 +97,10 @@ outputs:
       error_overdepending: true
       error_overlinking: true
       ignore_run_exports:
+        - numpy
+        - python
         # we don't actually use lalburst, but need it to ./configure
         - liblalburst
-        # nothing actually links against libpython
-        - python
     requirements:
       build:
         - {{ compiler('c') }}
