@@ -1,5 +1,5 @@
 {% set name = "lalinspiral" %}
-{% set version = "2.0.6" %}
+{% set version = "3.0.0" %}
 
 # dependencies
 {% set lal_version = "7.1.0" %}
@@ -15,7 +15,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: e1aa84dc7ad6d4567ed81f333c6ed804f127a0db0bcdd14c188f66c8d375e4a7
+  sha256: 1cdd95b782257b7d4172967f919c582c05a3fe97e957dc5c814755881fb0ae3a
 
 build:
   error_overdepending: true
