@@ -2,11 +2,11 @@
 {% set version = "3.0.0" %}
 
 # dependencies
-{% set lal_version = "7.1.0" %}
+{% set lal_version = "7.2.0" %}
 {% set lalframe_version = "2.0.0" %}
-{% set lalmetaio_version = "2.1.0" %}
-{% set lalsimulation_version = "3.1.0" %}
-{% set lalburst_version = "1.5.3" %}
+{% set lalmetaio_version = "3.0.0" %}
+{% set lalsimulation_version = "4.0.0" %}
+{% set lalburst_version = "1.6.0" %}
 {% set swig_version = "3.0.10" %}
 
 package:
@@ -74,8 +74,6 @@ outputs:
       commands:
         # check library
         - test -f ${PREFIX}/lib/liblalinspiral${SHLIB_EXT}  # [unix]
-        # check activate variables
-        - test "${LALINSPIRAL_DATADIR}" = "${PREFIX}/share/lalinspiral"  # [unix]
         # check pkg-config
         - pkg-config --print-errors --exact-version "${PKG_VERSION}" lalinspiral
     about:
@@ -113,8 +111,8 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - numpy                                  # [build_platform != target_platform]
       host:
-        - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - liblalburst >={{ lalburst_version }}
+        - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - numpy
         - python
       run:
@@ -128,6 +126,7 @@ outputs:
         - python-lalmetaio >={{ lalmetaio_version }}
         - python-lalsimulation >={{ lalsimulation_version }}
         - python-ligo-lw
+        - tqdm
     test:
       requires:
         - pytest >=4.0.0a0
@@ -170,7 +169,6 @@ outputs:
         - {{ compiler('c') }}
         - help2man >=1.37
         - make
-        - sed
       host:
         - liblal >={{ lal_version }}
         - liblalburst >={{ lalburst_version }}
@@ -179,10 +177,13 @@ outputs:
       run:
         - liblal >={{ lal_version }}
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
+        - ligo-segments
         - python
         - {{ pin_subpackage('python-lalinspiral', exact=True) }}
     test:
       commands:
+        - lalinspiral_injfind --help
+        - lalinspiral_thinca --help
         - lalinspiral_version --verbose
       imports:
         - lalinspiral
