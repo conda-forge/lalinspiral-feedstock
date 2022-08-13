@@ -1,12 +1,12 @@
 {% set name = "lalinspiral" %}
-{% set version = "2.0.6" %}
+{% set version = "3.0.0" %}
 
 # dependencies
-{% set lal_version = "7.1.0" %}
+{% set lal_version = "7.2.0" %}
 {% set lalframe_version = "2.0.0" %}
-{% set lalmetaio_version = "2.1.0" %}
-{% set lalsimulation_version = "3.1.0" %}
-{% set lalburst_version = "1.5.3" %}
+{% set lalmetaio_version = "3.0.0" %}
+{% set lalsimulation_version = "4.0.0" %}
+{% set lalburst_version = "1.6.0" %}
 {% set swig_version = "3.0.10" %}
 
 package:
@@ -14,8 +14,8 @@ package:
   version: {{ version }}
 
 source:
-  url: http://software.ligo.org/lscsoft/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: e1aa84dc7ad6d4567ed81f333c6ed804f127a0db0bcdd14c188f66c8d375e4a7
+  url: https://software.igwn.org/sources/source/lalsuite/{{ name }}-{{ version }}.tar.xz
+  sha256: 1cdd95b782257b7d4172967f919c582c05a3fe97e957dc5c814755881fb0ae3a
 
 build:
   error_overdepending: true
@@ -33,6 +33,7 @@ requirements:
   host:
     - gsl
     - liblal >={{ lal_version }}
+    - liblalburst >={{ lalburst_version }}
     - liblalframe >={{ lalframe_version }}
     - liblalmetaio >={{ lalmetaio_version }}
     - liblalsimulation >={{ lalsimulation_version }}
@@ -54,6 +55,7 @@ outputs:
       host:
         - gsl
         - liblal >={{ lal_version }}
+        - liblalburst >={{ lalburst_version }}
         - liblalframe >={{ lalframe_version }}
         - liblalmetaio >={{ lalmetaio_version }}
         - liblalsimulation >={{ lalsimulation_version }}
@@ -61,6 +63,7 @@ outputs:
       run:
         - gsl
         - liblal >={{ lal_version }}
+        - liblalburst >={{ lalburst_version }}
         - liblalframe >={{ lalframe_version }}
         - liblalmetaio >={{ lalmetaio_version }}
         - liblalsimulation >={{ lalsimulation_version }}
@@ -74,8 +77,6 @@ outputs:
       commands:
         # check library
         - test -f ${PREFIX}/lib/liblalinspiral${SHLIB_EXT}  # [unix]
-        # check activate variables
-        - test "${LALINSPIRAL_DATADIR}" = "${PREFIX}/share/lalinspiral"  # [unix]
         # check pkg-config
         - pkg-config --print-errors --exact-version "${PKG_VERSION}" lalinspiral
     about:
@@ -113,8 +114,8 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - numpy                                  # [build_platform != target_platform]
       host:
-        - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - liblalburst >={{ lalburst_version }}
+        - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - numpy
         - python
       run:
@@ -128,6 +129,7 @@ outputs:
         - python-lalmetaio >={{ lalmetaio_version }}
         - python-lalsimulation >={{ lalsimulation_version }}
         - python-ligo-lw
+        - tqdm
     test:
       requires:
         - pytest >=4.0.0a0
@@ -179,10 +181,13 @@ outputs:
       run:
         - liblal >={{ lal_version }}
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
+        - ligo-segments
         - python
         - {{ pin_subpackage('python-lalinspiral', exact=True) }}
     test:
       commands:
+        - lalinspiral_injfind --help
+        - lalinspiral_thinca --help
         - lalinspiral_version --verbose
       imports:
         - lalinspiral
