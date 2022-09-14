@@ -2,7 +2,7 @@
 {% set version = "3.0.2" %}
 
 # dependencies
-{% set lal_version = "7.2.0" %}
+{% set lal_version = "7.2.2" %}
 {% set lalframe_version = "2.0.0" %}
 {% set lalmetaio_version = "3.0.0" %}
 {% set lalsimulation_version = "4.0.0" %}
@@ -20,7 +20,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
