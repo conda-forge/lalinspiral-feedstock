@@ -93,7 +93,7 @@ outputs:
         applications that use the LAL Inspiral library.
 
   - name: python-lalinspiral
-    script: install-python.sh
+    script: build-python.sh
     build:
       error_overdepending: true
       error_overlinking: true
