@@ -20,7 +20,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -37,7 +37,7 @@ requirements:
     - liblalframe >={{ lalframe_version }}
     - liblalmetaio >={{ lalmetaio_version }}
     - liblalsimulation >={{ lalsimulation_version }}
-    - metaio
+    - libmetaio
 
 outputs:
   - name: liblalinspiral
@@ -59,7 +59,7 @@ outputs:
         - liblalframe >={{ lalframe_version }}
         - liblalmetaio >={{ lalmetaio_version }}
         - liblalsimulation >={{ lalsimulation_version }}
-        - metaio
+        - libmetaio
       run:
         - gsl
         - liblal >={{ lal_version }}
@@ -67,7 +67,7 @@ outputs:
         - liblalframe >={{ lalframe_version }}
         - liblalmetaio >={{ lalmetaio_version }}
         - liblalsimulation >={{ lalsimulation_version }}
-        - metaio
+        - libmetaio
       run_constrained:
         - lalinspiral >=2.0.1
         - python-lalinspiral >=2.0.1
@@ -93,7 +93,7 @@ outputs:
         applications that use the LAL Inspiral library.
 
   - name: python-lalinspiral
-    script: install-python.sh
+    script: build-python.sh
     build:
       error_overdepending: true
       error_overlinking: true
