@@ -1,5 +1,5 @@
 {% set name = "lalinspiral" %}
-{% set version = "4.0.1" %}
+{% set version = "4.0.2" %}
 
 # dependencies
 {% set lal_version = "7.3.0" %}
@@ -15,7 +15,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: e7eb8181dfb0f1d66cbaf4cae606d504605538e38dccb328ae91aa898cf858ba
+  sha256: f96e81940b9911f54a328c556e2d9ab628ee31e2c5518c0f778829bc90d8a6bd
 
 build:
   error_overdepending: true
