@@ -1,11 +1,11 @@
 {% set name = "lalinspiral" %}
-{% set version = "4.0.2" %}
+{% set version = "4.0.3" %}
 
 # dependencies
-{% set lal_version = "7.3.0" %}
+{% set lal_version = "7.4.0" %}
 {% set lalframe_version = "3.0.0" %}
 {% set lalmetaio_version = "4.0.0" %}
-{% set lalsimulation_version = "5.2.0" %}
+{% set lalsimulation_version = "5.3.0" %}
 {% set lalburst_version = "2.0.0" %}
 {% set swig_version = "3.0.10" %}
 
@@ -15,7 +15,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: f96e81940b9911f54a328c556e2d9ab628ee31e2c5518c0f778829bc90d8a6bd
+  sha256: 28b3f94351bfe1ca8a5a5d01ecb9f4c9cf47765a49728267b5d16303e65d7a1f
 
 build:
   error_overdepending: true

@@ -3,6 +3,7 @@ About lalinspiral-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/lalinspiral-feedstock/blob/main/LICENSE.txt)
 
+
 About lalinspiral
 -----------------
 
@@ -17,6 +18,7 @@ Development: https://git.ligo.org/lscsoft/lalsuite/
 Documentation: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
 
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
+
 
 About liblalinspiral
 --------------------
@@ -34,6 +36,7 @@ Documentation: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
 This package contains the shared object libraries needed to run
 applications that use the LAL Inspiral library.
+
 
 About python-lalinspiral
 ------------------------
