@@ -138,7 +138,6 @@ outputs:
       imports:
         - lalinspiral
         - lalinspiral.inspinjfind
-        - lalinspiral.sbank
         - lalinspiral.thinca
     about:
       home: https://wiki.ligo.org/Computing/LALSuite
