@@ -1,11 +1,11 @@
 {% set name = "lalinspiral" %}
-{% set version = "4.0.4" %}
+{% set version = "5.0.0" %}
 
 # dependencies
-{% set lal_version = "7.4.0" %}
+{% set lal_version = "7.5.0" %}
 {% set lalframe_version = "3.0.0" %}
 {% set lalmetaio_version = "4.0.0" %}
-{% set lalsimulation_version = "5.3.0" %}
+{% set lalsimulation_version = "5.4.0" %}
 {% set lalburst_version = "2.0.0" %}
 {% set swig_version = "3.0.10" %}
 
@@ -15,7 +15,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: 8be7b4eb00162592d0e21421243621b7aa4578b8cc3f4bb27aca0e26d30539d7
+  sha256: dab70ab3c3d49cca958a836fbdfc441f6eea78f32ee553e57a7713f688e6ad5b
 
 build:
   error_overdepending: true
@@ -138,7 +138,6 @@ outputs:
       imports:
         - lalinspiral
         - lalinspiral.inspinjfind
-        - lalinspiral.sbank
         - lalinspiral.thinca
     about:
       home: https://wiki.ligo.org/Computing/LALSuite
