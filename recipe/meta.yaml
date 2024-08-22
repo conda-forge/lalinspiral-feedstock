@@ -1,11 +1,11 @@
 {% set name = "lalinspiral" %}
-{% set version = "5.0.0" %}
+{% set version = "5.0.1" %}
 
 # dependencies
-{% set lal_version = "7.5.0" %}
+{% set lal_version = "7.6.0" %}
 {% set lalframe_version = "3.0.0" %}
 {% set lalmetaio_version = "4.0.0" %}
-{% set lalsimulation_version = "5.4.0" %}
+{% set lalsimulation_version = "6.0.0" %}
 {% set lalburst_version = "2.0.0" %}
 {% set swig_version = "3.0.10" %}
 
@@ -15,12 +15,11 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: dab70ab3c3d49cca958a836fbdfc441f6eea78f32ee553e57a7713f688e6ad5b
+  sha256: edb856fb1aa076cd9819a1ab749506f129cbd23b0b7e25e90ee368bf91afd0b7
 
 build:
-  error_overdepending: true
   error_overlinking: true
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -44,7 +43,6 @@ outputs:
   - name: liblalinspiral
     script: install-lib.sh
     build:
-      error_overdepending: true
       error_overlinking: true
       run_exports:
         - {{ pin_subpackage("liblalinspiral", max_pin="x") }}
@@ -95,13 +93,13 @@ outputs:
   - name: python-lalinspiral
     script: build-python.sh
     build:
-      error_overdepending: true
       error_overlinking: true
       ignore_run_exports:
-        - numpy
-        - python
         # we don't actually use lalburst, but need it to ./configure
         - liblalburst
+      # no python-lalburst on Python 3.9
+      # (astropy (for python-lalsimulation) is incompatible with numpy 2)
+      skip: true  # [py<310]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -161,11 +159,10 @@ outputs:
   - name: lalinspiral
     script: install-bin.sh
     build:
-      error_overdepending: true
       error_overlinking: true
-      ignore_run_exports:
-        - liblalburst
-        - python
+      # no python-lalburst on Python 3.9
+      # (astropy (for python-lalsimulation) is incompatible with numpy 2)
+      skip: true  # [py<310]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -175,7 +172,6 @@ outputs:
         - sed
       host:
         - liblal >={{ lal_version }}
-        - liblalburst >={{ lalburst_version }}
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - python
       run:
