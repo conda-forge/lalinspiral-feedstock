@@ -97,6 +97,9 @@ outputs:
       ignore_run_exports:
         # we don't actually use lalburst, but need it to ./configure
         - liblalburst
+      # no python-lalburst on Python 3.9
+      # (astropy (for python-lalsimulation) is incompatible with numpy 2)
+      skip: true  # [py<310]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -157,6 +160,9 @@ outputs:
     script: install-bin.sh
     build:
       error_overlinking: true
+      # no python-lalburst on Python 3.9
+      # (astropy (for python-lalsimulation) is incompatible with numpy 2)
+      skip: true  # [py<310]
     requirements:
       build:
         - {{ compiler('c') }}
