@@ -1,11 +1,11 @@
 {% set name = "lalinspiral" %}
-{% set version = "5.0.2" %}
+{% set version = "5.0.3" %}
 
 # dependencies
-{% set lal_version = "7.6.0" %}
+{% set lal_version = "7.7.0" %}
 {% set lalframe_version = "3.0.0" %}
 {% set lalmetaio_version = "4.0.0" %}
-{% set lalsimulation_version = "6.1.0" %}
+{% set lalsimulation_version = "6.2.0" %}
 {% set lalburst_version = "2.0.0" %}
 {% set swig_version = "3.0.10" %}
 
@@ -15,7 +15,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/lalsuite/{{ name }}-{{ version }}.tar.xz
-  sha256: 56ab39d29f719d032518d2edb922e70889238c0888266f48be44b66ee54ea5c4
+  sha256: 11468fb8d8d890e2113859fab9184906e7aee956f586a8ffbec3302826cddbb3
 
 build:
   error_overlinking: true
@@ -118,6 +118,7 @@ outputs:
         - numpy
         - python
       run:
+        - igwn-ligolw
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - lscsoft-glue
         - python
@@ -126,7 +127,6 @@ outputs:
         - python-lalframe >={{ lalframe_version }}
         - python-lalmetaio >={{ lalmetaio_version }}
         - python-lalsimulation >={{ lalsimulation_version }}
-        - python-ligo-lw
         - tqdm
     test:
       requires:
