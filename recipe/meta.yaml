@@ -19,7 +19,7 @@ source:
 
 build:
   error_overlinking: true
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -175,9 +175,9 @@ outputs:
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
         - python
       run:
+        - igwn-segments
         - liblal >={{ lal_version }}
         - {{ pin_subpackage('liblalinspiral', exact=True) }}
-        - ligo-segments
         - python
         - {{ pin_subpackage('python-lalinspiral', exact=True) }}
     test:
