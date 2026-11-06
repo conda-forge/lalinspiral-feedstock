@@ -15,10 +15,10 @@ Summary: LSC Algorithm Inspiral Library
 
 Development: https://git.ligo.org/lscsoft/lalsuite/
 
-Documentation: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
+Documentation: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
 
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
-
+This package contains the runtime tools.
 
 About liblalinspiral
 --------------------
@@ -31,12 +31,11 @@ Summary: LSC Algorithm Inspiral Library shared object libraries
 
 Development: https://git.ligo.org/lscsoft/lalsuite/
 
-Documentation: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
+Documentation: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
 
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
-This package contains the shared object libraries needed to run
+This package contains the shared-object libraries needed to run
 applications that use the LAL Inspiral library.
-
 
 About python-lalinspiral
 ------------------------
@@ -45,11 +44,11 @@ Home: https://wiki.ligo.org/Computing/LALSuite
 
 Package license: GPL-2.0-or-later
 
-Summary: LSC Algorithm Inspiral Library Python libraries
+Summary: LSC Algorithm Inspiral Library Python bindings
 
 Development: https://git.ligo.org/lscsoft/lalsuite/
 
-Documentation: https://docs.ligo.org/lscsoft/lalsuite/lalinspiral/
+Documentation: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
 
 The LSC Algorithm Inspiral Library for gravitational wave data analysis.
 This package contains the Python bindings of the LALInspiral C libraries
@@ -58,7 +57,6 @@ and additional Python modules.
 Note: this package only provides the importable Python libraries.
 All command-line interfaces, scripts, and executables are
 part of the `lalinspiral` package.
-
 
 Current build status
 ====================
