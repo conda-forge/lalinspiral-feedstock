@@ -1,4 +1,4 @@
-# common build options for LALSimulation
+# common build options for LALInspiral
 
 # macros
 _make="make -j ${CPU_COUNT} V=1 VERBOSE=1"
@@ -21,7 +21,6 @@ CONFIGURE_ARGS="
   --disable-gcc-flags
   --disable-static
   --disable-swig-octave
-  --enable-openmp
   --prefix=${PREFIX}
 "
 

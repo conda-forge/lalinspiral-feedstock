@@ -1,0 +1,240 @@
+schema_version: 1
+
+context:
+  version: "5.1.0"
+
+  # dependencies
+  lal_version: 8.0.0
+  lalburst_version: 3.0.0
+  lalframe_version: 3.1.0
+  lalmetaio_version: 4.1.0
+  lalsimulation_version: 7.0.0
+
+  # LAL requires downstream packages to be built with the same version of SWIG,
+  # so we need to pin it here
+  swig_version: 4.4.1
+
+recipe:
+  name: lalinspiral-split
+  version: ${{ version }}
+
+source:
+  - url: https://software.igwn.org/sources/source/lalsuite/lalinspiral-${{ version }}.tar.xz
+    sha256: 139f1f52d94da6a0dbfced40f433b4c4508169e91e2f11607794576c83045617
+
+build:
+  number: 0
+  skip:
+    - win
+
+outputs:
+
+  # -- Staging -----------------------
+
+  - staging:
+      name: lalinspiral-c-build
+    build:
+      script: build
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - make
+        - pkg-config >=0.18.0
+        - python >=3.6
+        - swig ${{ swig_version }}.*
+      host:
+        - gsl
+        - liblal >=${{ lal_version }}
+        - liblalburst >=${{ lalburst_version }}
+        - liblalframe >=${{ lalframe_version }}
+        - liblalmetaio >=${{ lalmetaio_version }}
+        - liblalsimulation >=${{ lalsimulation_version }}
+
+  # -- Packages ----------------------
+
+  - package:
+      name: liblalinspiral
+    inherit: lalinspiral-c-build
+    build:
+      dynamic_linking:
+        overdepending_behavior: error
+      files:
+        - include/lal/
+        - lib/liblalinspiral*
+        - lib/pkgconfig/lalinspiral*.pc
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+      run_exports:
+        - ${{ pin_subpackage("liblalinspiral", upper_bound="x") }}
+      run_constraints:
+        - lalinspiral >=2.0.1
+        - python-lalinspiral >=2.0.1
+    tests:
+      - package_contents:
+          lib:
+            - lalinspiral
+      - requirements:
+          run:
+            - pkg-config
+        script:
+          - pkg-config --print-errors --exact-version "${PKG_VERSION}" lalinspiral
+    about:
+      summary: LSC Algorithm Inspiral Library shared object libraries
+      description: |
+        The LSC Algorithm Inspiral Library for gravitational wave data analysis.
+        This package contains the shared-object libraries needed to run
+        applications that use the LAL Inspiral library.
+
+  - package:
+      name: python-lalinspiral
+    inherit:
+      from: lalinspiral-c-build
+      run_exports: false
+    build:
+      dynamic_linking:
+        overdepending_behavior: error
+      files:
+        - lib/python*/site-packages/
+      script: build-python
+      variant:
+        # use the same keys as liblalinspiral so that we ensure a unique
+        # python-lalinspiral build string for each unique liblalinspiral build
+        use_keys:
+          - gsl
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - make
+        - pkg-config >=0.18.0
+        - swig ${{ swig_version }}.*
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - numpy
+            - python
+      host:
+        - ${{ pin_subpackage("liblalinspiral", exact=True) }}
+        - numpy
+        - python
+      run:
+        - igwn-ligolw
+        - ${{ pin_subpackage("liblalinspiral", exact=True) }}
+        - python
+        - python-lal >=${{ lal_version }}
+        - python-lalburst >=${{ lalburst_version }}
+        - python-lalframe >=${{ lalframe_version }}
+        - python-lalmetaio >=${{ lalmetaio_version }}
+        - python-lalsimulation >=${{ lalsimulation_version }}
+        - tqdm
+    tests:
+      - python:
+          imports:
+            - lalinspiral
+            - lalinspiral.inspinjfind
+            - lalinspiral.thinca
+          pip_check: false
+      - requirements:
+          run:
+            - pytest >=4.0
+        files:
+          source:
+            - test/python/
+        script:
+          - python -m pytest -ra -v test/python
+    about:
+      summary: LSC Algorithm Inspiral Library Python bindings
+      description: |
+        The LSC Algorithm Inspiral Library for gravitational wave data analysis.
+        This package contains the Python bindings of the LALInspiral C libraries
+        and additional Python modules.
+
+        Note: this package only provides the importable Python libraries.
+        All command-line interfaces, scripts, and executables are
+        part of the `lalinspiral` package.
+
+  - package:
+      name: lalinspiral
+    inherit:
+      from: lalinspiral-c-build
+      run_exports: false
+    build:
+      dynamic_linking:
+        overdepending_behavior: error
+      files:
+        - bin/
+        - etc/lalinspiral-user-env.*
+        - share/man/
+      script: build-bin
+      variant:
+        # use the same keys as liblalinspiral so that we ensure a unique
+        # lalinspiral build string for each unique liblalinspiral build
+        use_keys:
+          - gsl
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - help2man >=1.37
+        - make
+        - pkg-config >=0.18.0
+        - rsync
+        - sed
+        - swig ${{ swig_version }}.*
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - numpy
+            - python
+      host:
+        # help2man runs the Python scripts, which need their runtime dependencies
+        - igwn-segments
+        - liblal ${{ lal_version }}.*
+        - ${{ pin_subpackage("liblalinspiral", exact=True) }}
+        # needed by ./configure
+        - numpy
+        - python
+        - ${{ pin_subpackage("python-lalinspiral", exact=True) }}
+      run:
+        - igwn-segments
+        - ${{ pin_subpackage("liblalinspiral", exact=True) }}
+        - python
+        - ${{ pin_subpackage("python-lalinspiral", exact=True) }}
+    tests:
+      - python:
+          imports:
+            - lalinspiral
+          pip_check: false
+      - script:
+          # assert that the manuals don't just contain errors
+          - grep -q ModuleNotFoundError ${PREFIX}/share/man/man1/lalinspiral_*.1 && exit 1
+          # check executables
+          - lalinspiral_version --verbose
+          - lalinspiral_injfind --help
+          - lalinspiral_thinca --help
+          # the user environment script rewrites PATH, so check that it still works
+          - bash -c '. "${PREFIX}/etc/lalinspiral-user-env.sh" && lalinspiral_version'
+    about:
+      summary: LSC Algorithm Inspiral Library
+      description: |
+        The LSC Algorithm Inspiral Library for gravitational wave data analysis.
+        This package contains the runtime tools.
+
+about:
+  summary: LSC Algorithm Inspiral Library
+  description: |
+    The LSC Algorithm Inspiral Library for gravitational wave data analysis.
+  homepage: https://wiki.ligo.org/Computing/LALSuite
+  documentation: https://lscsoft.docs.ligo.org/lalsuite/lalinspiral/
+  repository: https://git.ligo.org/lscsoft/lalsuite/
+  license: GPL-2.0-or-later
+  license_file: COPYING
+
+extra:
+  feedstock-name: lalinspiral
+  recipe-maintainers:
+    - duncanmmacleod
+    - skymoo
