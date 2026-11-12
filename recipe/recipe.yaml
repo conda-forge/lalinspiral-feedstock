@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "5.1.0"
+  version: "5.1.1"
 
   # dependencies
   lal_version: 8.0.0
@@ -20,10 +20,10 @@ recipe:
 
 source:
   - url: https://software.igwn.org/sources/source/lalsuite/lalinspiral-${{ version }}.tar.xz
-    sha256: 139f1f52d94da6a0dbfced40f433b4c4508169e91e2f11607794576c83045617
+    sha256: 2d3203d775d4d2ea4904e0230170ef3189ed73ac6f8c6925468de9036c358f5c
 
 build:
-  number: 1
+  number: 0
   skip:
     - win
 
